@@ -2,15 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <meta
     name="description"
-    content="Riad Fitness — personalized coaching for strength, hypertrophy, body recomposition and athletic performance."
+    content="Riad Fitness — personalized coaching for strength, hypertrophy, body recomposition, weight loss and athletic performance."
   >
+
+  <meta name="theme-color" content="#0a0a0a">
 
   <title>Riad Fitness | Personal Coaching</title>
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -19,86 +26,131 @@
     rel="stylesheet"
   >
 
+  <!-- Main CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- HEADER -->
+  <!-- ================================
+       HEADER
+  ================================= -->
 
-  <header class="site-header">
+  <header class="site-header" id="siteHeader">
 
-    <a href="#home" class="brand">
+    <a
+      href="#home"
+      class="brand"
+      aria-label="Riad Fitness home"
+    >
       <span class="brand-mark">RF</span>
-      <span>RIAD <b>FITNESS</b></span>
+
+      <span class="brand-name">
+        RIAD <b>FITNESS</b>
+      </span>
     </a>
+
 
     <button
       class="menu-toggle"
-      aria-label="Open menu"
+      type="button"
+      aria-label="Open navigation"
       aria-expanded="false"
+      aria-controls="mainNavigation"
     >
-      ☰
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
 
-    <nav class="nav">
+
+    <nav
+      class="nav"
+      id="mainNavigation"
+      aria-label="Main navigation"
+    >
       <a href="#about">About</a>
       <a href="#coaching">Coaching</a>
       <a href="#method">Method</a>
       <a href="#results">Results</a>
-      <a href="#contact" class="nav-cta">Apply Now</a>
+
+      <a
+        href="#contact"
+        class="nav-cta"
+      >
+        Apply Now
+      </a>
     </nav>
 
   </header>
 
 
-  <main id="home">
+  <main>
 
-    <!-- HERO -->
+    <!-- ================================
+         HERO
+    ================================= -->
 
-    <section class="hero">
+    <section
+      class="hero"
+      id="home"
+    >
 
       <div class="hero-content">
 
         <p class="eyebrow">
-          PERSONAL COACHING • STRENGTH • PERFORMANCE
+          PERSONAL COACHING
+          <span>•</span>
+          STRENGTH
+          <span>•</span>
+          PERFORMANCE
         </p>
+
 
         <h1>
           BUILD A BODY
           <span>THAT PERFORMS.</span>
         </h1>
 
+
         <p class="hero-text">
-          Personalized coaching built around your goals, your body
-          and your lifestyle — not a one-size-fits-all program.
+          Personalized coaching built around your goals,
+          your body and your lifestyle — not a one-size-fits-all program.
         </p>
+
 
         <div class="hero-actions">
 
-          <a href="#contact" class="btn btn-primary">
+          <a
+            href="#contact"
+            class="btn btn-primary"
+          >
             START YOUR JOURNEY
           </a>
 
-          <a href="#coaching" class="btn btn-ghost">
+          <a
+            href="#coaching"
+            class="btn btn-secondary"
+          >
             EXPLORE COACHING
           </a>
 
         </div>
 
+
         <div class="hero-stats">
 
-          <div>
+          <div class="stat">
             <strong>LEVEL 3</strong>
             <span>COACHING</span>
           </div>
 
-          <div>
+          <div class="stat">
             <strong>20+</strong>
             <span>YEARS MARTIAL ARTS</span>
           </div>
 
-          <div>
+          <div class="stat">
             <strong>1:1</strong>
             <span>PERSONALIZED</span>
           </div>
@@ -108,18 +160,27 @@
       </div>
 
 
-      <!-- ONLY PERSONAL PHOTO ON THE WEBSITE -->
+      <!-- ONLY REAL PHOTO ON THE WEBSITE -->
 
-      <div class="profile-photo">
+      <div class="profile-wrapper">
 
-        <img
-          src="anass.png"
-          alt="Anass Riad - Riad Fitness Coach"
-        >
+        <div class="profile-photo">
 
-        <div class="profile-caption">
-          <strong>ANASS RIAD</strong>
-          <span>COACH • ATHLETE</span>
+          <img
+            src="anass.png"
+            alt="Anass Riad — Riad Fitness Coach"
+          >
+
+          <div class="profile-info">
+
+            <strong>ANASS RIAD</strong>
+
+            <span>
+              COACH • ATHLETE
+            </span>
+
+          </div>
+
         </div>
 
       </div>
@@ -127,9 +188,14 @@
     </section>
 
 
-    <!-- SPECIALTIES -->
+    <!-- ================================
+         SPECIALTIES BAR
+    ================================= -->
 
-    <section class="ticker">
+    <section
+      class="ticker"
+      aria-label="Coaching specialties"
+    >
 
       <span>WEIGHT LOSS</span>
       <i>•</i>
@@ -148,17 +214,24 @@
     </section>
 
 
-    <!-- ABOUT -->
+    <!-- ================================
+         ABOUT
+    ================================= -->
 
-    <section id="about" class="section">
+    <section
+      class="section about"
+      id="about"
+    >
 
       <div class="section-label">
         01 / ABOUT
       </div>
 
-      <div class="about-content">
 
-        <div>
+      <div class="about-grid">
+
+        <div class="section-intro">
+
           <p class="eyebrow">
             THE COACH BEHIND RIAD FITNESS
           </p>
@@ -167,22 +240,26 @@
             COACHING WITH
             <span>PURPOSE.</span>
           </h2>
+
         </div>
 
-        <div class="about-text">
+
+        <div class="about-content">
 
           <p>
-            I'm Anass Riad, a coach focused on helping people become
-            stronger, fitter and more capable through structured,
-            progressive training.
+            I'm Anass Riad, a coach focused on helping people
+            become stronger, fitter and more capable through
+            structured, progressive training.
           </p>
 
           <p>
-            My background combines strength and conditioning with
-            years of boxing, kickboxing and martial arts. My coaching
-            approach is built around assessment, individual needs,
-            progressive programming and long-term development.
+            My background combines strength and conditioning
+            with years of boxing, kickboxing and martial arts.
+            My coaching approach is built around assessment,
+            individual needs, progressive programming and
+            long-term development.
           </p>
+
 
           <div class="credentials">
 
@@ -210,24 +287,32 @@
     </section>
 
 
-    <!-- COACHING -->
+    <!-- ================================
+         COACHING
+    ================================= -->
 
-    <section id="coaching" class="section dark-section">
+    <section
+      class="section dark-section"
+      id="coaching"
+    >
 
       <div class="section-label">
         02 / COACHING
       </div>
 
+
       <div class="section-heading">
 
-        <p class="eyebrow">
-          YOUR GOAL. YOUR PROGRAM.
-        </p>
+        <div>
+          <p class="eyebrow">
+            YOUR GOAL. YOUR PROGRAM.
+          </p>
 
-        <h2>
-          COACHING THAT
-          <span>ADAPTS TO YOU.</span>
-        </h2>
+          <h2>
+            COACHING THAT
+            <span>ADAPTS TO YOU.</span>
+          </h2>
+        </div>
 
       </div>
 
@@ -235,57 +320,86 @@
       <div class="cards">
 
         <article class="card">
-          <span>01</span>
+
+          <div class="card-number">01</div>
+
           <h3>BODY RECOMPOSITION</h3>
+
           <p>
-            Build muscle, reduce body fat and develop a stronger
-            physique with a structured approach.
+            Build muscle, reduce body fat and develop a
+            stronger physique through structured training.
           </p>
+
         </article>
 
+
         <article class="card">
-          <span>02</span>
+
+          <div class="card-number">02</div>
+
           <h3>HYPERTROPHY</h3>
+
           <p>
-            Progressive resistance training designed around smart
-            exercise selection and appropriate weekly volume.
+            Progressive resistance training built around
+            exercise selection, volume and progression.
           </p>
+
         </article>
 
+
         <article class="card">
-          <span>03</span>
+
+          <div class="card-number">03</div>
+
           <h3>STRENGTH</h3>
+
           <p>
-            Build strength through progressive training, technical
-            development and consistent performance tracking.
+            Develop strength through progressive training,
+            technical development and performance tracking.
           </p>
+
         </article>
 
+
         <article class="card">
-          <span>04</span>
+
+          <div class="card-number">04</div>
+
           <h3>ATHLETIC PERFORMANCE</h3>
+
           <p>
-            Develop conditioning, agility, balance, stability,
-            motor control and athletic qualities.
+            Develop conditioning, agility, balance,
+            stability, motor control and athletic qualities.
           </p>
+
         </article>
 
+
         <article class="card">
-          <span>05</span>
+
+          <div class="card-number">05</div>
+
           <h3>WEIGHT LOSS</h3>
+
           <p>
-            A structured coaching process focused on sustainable
-            progress, training and practical nutrition guidance.
+            A structured coaching process focused on
+            sustainable progress and practical guidance.
           </p>
+
         </article>
 
+
         <article class="card">
-          <span>06</span>
+
+          <div class="card-number">06</div>
+
           <h3>PERSONAL TRAINING</h3>
+
           <p>
-            Individual sessions with coaching, exercise technique,
+            Individual coaching with technique correction,
             progression and real-time adjustments.
           </p>
+
         </article>
 
       </div>
@@ -293,13 +407,19 @@
     </section>
 
 
-    <!-- METHOD -->
+    <!-- ================================
+         METHOD
+    ================================= -->
 
-    <section id="method" class="section">
+    <section
+      class="section"
+      id="method"
+    >
 
       <div class="section-label">
         03 / METHOD
       </div>
+
 
       <div class="method-grid">
 
@@ -314,10 +434,10 @@
             <span>REAL PROGRESS.</span>
           </h2>
 
-          <p>
-            Every program starts by understanding the person behind
-            the goal. Training is then structured, monitored and
-            adapted as progress happens.
+          <p class="method-description">
+            Every program starts by understanding the person
+            behind the goal. Training is then structured,
+            monitored and adapted as progress happens.
           </p>
 
         </div>
@@ -326,51 +446,66 @@
         <div class="steps">
 
           <div class="step">
+
             <strong>01</strong>
 
             <div>
               <h3>ASSESS</h3>
+
               <p>
-                Understand your goals, experience, movement needs
-                and lifestyle.
+                Understand your goals, experience,
+                movement needs and lifestyle.
               </p>
             </div>
+
           </div>
 
+
           <div class="step">
+
             <strong>02</strong>
 
             <div>
               <h3>PROGRAM</h3>
+
               <p>
-                Build a training plan around your individual
-                objective and current level.
+                Build a training plan around your
+                individual objective and current level.
               </p>
             </div>
+
           </div>
 
+
           <div class="step">
+
             <strong>03</strong>
 
             <div>
               <h3>PROGRESS</h3>
+
               <p>
-                Use progressive overload, appropriate intensity
-                and structured progression.
+                Use progressive overload, appropriate
+                intensity and structured progression.
               </p>
             </div>
+
           </div>
 
+
           <div class="step">
+
             <strong>04</strong>
 
             <div>
               <h3>ADAPT</h3>
+
               <p>
-                Track results and adjust the plan as your body
-                and performance change.
+                Track results and adjust the plan as
+                your body and performance change.
               </p>
             </div>
+
           </div>
 
         </div>
@@ -380,13 +515,20 @@
     </section>
 
 
-    <!-- RESULTS — NO PHOTOS YET -->
+    <!-- ================================
+         RESULTS
+         NO REAL IMAGES YET
+    ================================= -->
 
-    <section id="results" class="section dark-section">
+    <section
+      class="section dark-section"
+      id="results"
+    >
 
       <div class="section-label">
         04 / RESULTS
       </div>
+
 
       <div class="section-heading">
 
@@ -402,21 +544,14 @@
       </div>
 
 
-      <div class="results-grid">
+      <div class="results-empty">
 
-        <div class="result-placeholder">
-          <span>CLIENT RESULT</span>
-          <small>PHOTO COMING SOON</small>
-        </div>
+        <div>
+          <span>CLIENT RESULTS</span>
 
-        <div class="result-placeholder">
-          <span>CLIENT RESULT</span>
-          <small>PHOTO COMING SOON</small>
-        </div>
-
-        <div class="result-placeholder">
-          <span>CLIENT RESULT</span>
-          <small>PHOTO COMING SOON</small>
+          <p>
+            Transformations and testimonials will appear here.
+          </p>
         </div>
 
       </div>
@@ -424,7 +559,9 @@
     </section>
 
 
-    <!-- PHILOSOPHY -->
+    <!-- ================================
+         PHILOSOPHY
+    ================================= -->
 
     <section class="section philosophy">
 
@@ -444,13 +581,19 @@
     </section>
 
 
-    <!-- CONTACT -->
+    <!-- ================================
+         CONTACT / APPLICATION
+    ================================= -->
 
-    <section id="contact" class="section contact">
+    <section
+      class="section contact"
+      id="contact"
+    >
 
       <div class="section-label">
         05 / APPLY
       </div>
+
 
       <div class="contact-grid">
 
@@ -466,14 +609,17 @@
           </h2>
 
           <p>
-            Tell me where you are now, where you want to go and
-            what has been holding you back.
+            Tell me where you are now, where you want to go
+            and what has been holding you back.
           </p>
 
         </div>
 
 
-        <form class="application-form" id="applicationForm">
+        <form
+          class="application-form"
+          id="applicationForm"
+        >
 
           <label>
             FULL NAME
@@ -482,9 +628,11 @@
               type="text"
               name="name"
               placeholder="Your name"
+              autocomplete="name"
               required
             >
           </label>
+
 
           <label>
             EMAIL
@@ -493,29 +641,52 @@
               type="email"
               name="email"
               placeholder="you@email.com"
+              autocomplete="email"
               required
             >
           </label>
 
+
           <label>
             MAIN GOAL
 
-            <select name="goal" required>
+            <select
+              name="goal"
+              required
+            >
 
               <option value="">
                 Select one
               </option>
 
-              <option>Weight loss</option>
-              <option>Body recomposition</option>
-              <option>Hypertrophy</option>
-              <option>Strength</option>
-              <option>Athletic performance</option>
-              <option>General fitness</option>
+              <option value="Weight loss">
+                Weight loss
+              </option>
+
+              <option value="Body recomposition">
+                Body recomposition
+              </option>
+
+              <option value="Hypertrophy">
+                Hypertrophy
+              </option>
+
+              <option value="Strength">
+                Strength
+              </option>
+
+              <option value="Athletic performance">
+                Athletic performance
+              </option>
+
+              <option value="General fitness">
+                General fitness
+              </option>
 
             </select>
 
           </label>
+
 
           <label>
             TELL ME ABOUT YOUR GOAL
@@ -529,6 +700,7 @@
 
           </label>
 
+
           <button
             type="submit"
             class="btn btn-primary"
@@ -536,9 +708,12 @@
             SUBMIT APPLICATION
           </button>
 
-          <p class="form-note">
-            Form is ready for future email/form-service connection.
-          </p>
+
+          <p
+            class="form-status"
+            id="formStatus"
+            aria-live="polite"
+          ></p>
 
         </form>
 
@@ -549,7 +724,9 @@
   </main>
 
 
-  <!-- FOOTER -->
+  <!-- ================================
+       FOOTER
+  ================================= -->
 
   <footer>
 
@@ -561,20 +738,26 @@
       Personal coaching • Strength • Performance
     </p>
 
+
     <div class="footer-links">
+
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#coaching">Coaching</a>
       <a href="#contact">Apply</a>
+
     </div>
 
+
     <small>
-      © <span id="year"></span> Riad Fitness. All rights reserved.
+      © <span id="year"></span>
+      Riad Fitness. All rights reserved.
     </small>
 
   </footer>
 
 
+  <!-- Main JavaScript -->
   <script src="script.js"></script>
 
 </body>
