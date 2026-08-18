@@ -1,105 +1,131 @@
 /* =========================================
-   RIAD FITNESS — MAIN JAVASCRIPT
+   RIAD FITNESS
+   MAIN JAVASCRIPT
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================
-     MOBILE MENU
+     ELEMENTS
   ========================================= */
 
+  const header = document.getElementById("siteHeader");
   const menuToggle = document.querySelector(".menu-toggle");
-  const nav = document.querySelector(".nav");
+  const navigation = document.getElementById("mainNavigation");
+  const navigationLinks = document.querySelectorAll(".nav a");
 
-  if (menuToggle && nav) {
+  const form = document.getElementById("applicationForm");
+  const formStatus = document.getElementById("formStatus");
 
-    menuToggle.addEventListener("click", () => {
+  const yearElement = document.getElementById("year");
 
-      const isOpen = nav.classList.toggle("open");
+
+  /* =========================================
+     FOOTER YEAR
+  ========================================= */
+
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+
+
+  /* =========================================
+     MOBILE NAVIGATION
+  ========================================= */
+
+  if (menuToggle && navigation) {
+
+    const closeMenu = () => {
+
+      navigation.classList.remove("open");
+
+      menuToggle.classList.remove("active");
 
       menuToggle.setAttribute(
         "aria-expanded",
-        isOpen ? "true" : "false"
+        "false"
       );
 
       menuToggle.setAttribute(
         "aria-label",
-        isOpen ? "Close menu" : "Open menu"
+        "Open navigation"
       );
 
-      menuToggle.textContent = isOpen ? "✕" : "☰";
+    };
+
+
+    const openMenu = () => {
+
+      navigation.classList.add("open");
+
+      menuToggle.classList.add("active");
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      menuToggle.setAttribute(
+        "aria-label",
+        "Close navigation"
+      );
+
+    };
+
+
+    menuToggle.addEventListener("click", () => {
+
+      const isOpen =
+        navigation.classList.contains("open");
+
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
 
     });
 
 
-    /* Close menu after clicking a link */
+    /* Close menu after selecting a page section */
 
-    const navLinks = nav.querySelectorAll("a");
-
-    navLinks.forEach(link => {
+    navigationLinks.forEach((link) => {
 
       link.addEventListener("click", () => {
-
-        nav.classList.remove("open");
-
-        menuToggle.setAttribute(
-          "aria-expanded",
-          "false"
-        );
-
-        menuToggle.setAttribute(
-          "aria-label",
-          "Open menu"
-        );
-
-        menuToggle.textContent = "☰";
-
+        closeMenu();
       });
 
     });
 
-  }
+
+    /* Close menu with Escape */
+
+    document.addEventListener("keydown", (event) => {
+
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+
+    });
 
 
-  /* =========================================
-     CURRENT YEAR
-  ========================================= */
+    /* Close menu when clicking outside */
 
-  const year = document.getElementById("year");
+    document.addEventListener("click", (event) => {
 
-  if (year) {
-    year.textContent = new Date().getFullYear();
-  }
+      const clickedInsideMenu =
+        navigation.contains(event.target);
 
+      const clickedButton =
+        menuToggle.contains(event.target);
 
-  /* =========================================
-     APPLICATION FORM
-  ========================================= */
-
-  const form = document.getElementById("applicationForm");
-
-  if (form) {
-
-    form.addEventListener("submit", (event) => {
-
-      event.preventDefault();
-
-      const button = form.querySelector("button");
-
-      if (!button) return;
-
-      const originalText = button.textContent;
-
-      button.textContent = "APPLICATION READY ✓";
-
-      button.disabled = true;
-
-      setTimeout(() => {
-
-        button.textContent = originalText;
-        button.disabled = false;
-
-      }, 2500);
+      if (
+        navigation.classList.contains("open") &&
+        !clickedInsideMenu &&
+        !clickedButton
+      ) {
+        closeMenu();
+      }
 
     });
 
@@ -110,24 +136,107 @@ document.addEventListener("DOMContentLoaded", () => {
      HEADER SCROLL EFFECT
   ========================================= */
 
-  const header = document.querySelector(".site-header");
-
   if (header) {
+
+    const updateHeader = () => {
+
+      if (window.scrollY > 20) {
+
+        header.classList.add("scrolled");
+
+      } else {
+
+        header.classList.remove("scrolled");
+
+      }
+
+    };
+
+
+    updateHeader();
+
 
     window.addEventListener(
       "scroll",
-      () => {
-
-        if (window.scrollY > 30) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
-        }
-
-      },
+      updateHeader,
       { passive: true }
     );
 
   }
+
+
+  /* =========================================
+     APPLICATION FORM
+  ========================================= */
+
+  if (form && formStatus) {
+
+    form.addEventListener("submit", (event) => {
+
+      event.preventDefault();
+
+
+      /* Basic browser validation */
+
+      if (!form.checkValidity()) {
+
+        form.reportValidity();
+
+        return;
+
+      }
+
+
+      /*
+        The website currently has no backend/email service.
+
+        We therefore don't pretend the application
+        was actually sent.
+      */
+
+      formStatus.textContent =
+        "Your application is ready. Connect an email service to receive submissions.";
+
+
+      formStatus.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+
+    });
+
+  }
+
+
+  /* =========================================
+     PREVENT MOBILE NAV FROM STAYING OPEN
+     AFTER RESIZING TO DESKTOP
+  ========================================= */
+
+  window.addEventListener("resize", () => {
+
+    if (
+      window.innerWidth > 950 &&
+      navigation &&
+      menuToggle
+    ) {
+
+      navigation.classList.remove("open");
+
+      menuToggle.classList.remove("active");
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      menuToggle.setAttribute(
+        "aria-label",
+        "Open navigation"
+      );
+
+    }
+
+  });
 
 });
