@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.getElementById("applicationForm");
   const formStatus = document.getElementById("formStatus");
+  const submitButton = form
+    ? form.querySelector('button[type="submit"]')
+    : null;
 
   const yearElement = document.getElementById("year");
 
@@ -38,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeMenu = () => {
 
       navigation.classList.remove("open");
-
       menuToggle.classList.remove("active");
 
       menuToggle.setAttribute(
@@ -50,14 +52,12 @@ document.addEventListener("DOMContentLoaded", () => {
         "aria-label",
         "Open navigation"
       );
-
     };
 
 
     const openMenu = () => {
 
       navigation.classList.add("open");
-
       menuToggle.classList.add("active");
 
       menuToggle.setAttribute(
@@ -69,11 +69,12 @@ document.addEventListener("DOMContentLoaded", () => {
         "aria-label",
         "Close navigation"
       );
-
     };
 
 
-    menuToggle.addEventListener("click", () => {
+    menuToggle.addEventListener("click", (event) => {
+
+      event.stopPropagation();
 
       const isOpen =
         navigation.classList.contains("open");
@@ -87,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* Close menu after selecting a page section */
+    /* Close after selecting a section */
 
     navigationLinks.forEach((link) => {
 
@@ -98,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* Close menu with Escape */
+    /* Close with Escape */
 
     document.addEventListener("keydown", (event) => {
 
@@ -109,20 +110,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* Close menu when clicking outside */
+    /* Close when clicking outside */
 
     document.addEventListener("click", (event) => {
 
-      const clickedInsideMenu =
-        navigation.contains(event.target);
-
-      const clickedButton =
-        menuToggle.contains(event.target);
-
       if (
         navigation.classList.contains("open") &&
-        !clickedInsideMenu &&
-        !clickedButton
+        !navigation.contains(event.target) &&
+        !menuToggle.contains(event.target)
       ) {
         closeMenu();
       }
@@ -141,20 +136,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateHeader = () => {
 
       if (window.scrollY > 20) {
-
         header.classList.add("scrolled");
-
       } else {
-
         header.classList.remove("scrolled");
-
       }
 
     };
 
-
     updateHeader();
-
 
     window.addEventListener(
       "scroll",
@@ -167,16 +156,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================
      APPLICATION FORM
+     FORMSPREE SUBMISSION
   ========================================= */
 
-  if (form && formStatus) {
+  if (form) {
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
+
+      /*
+        IMPORTANT:
+        Stop the normal browser page reload.
+
+        We will send the form manually
+        to Formspree using fetch().
+      */
 
       event.preventDefault();
 
 
-      /* Basic browser validation */
+      /* =========================================
+         VALIDATION
+      ========================================= */
 
       if (!form.checkValidity()) {
 
@@ -187,21 +187,191 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
 
-      /*
-        The website currently has no backend/email service.
+      /* =========================================
+         PREPARE UI
+      ========================================= */
 
-        We therefore don't pretend the application
-        was actually sent.
-      */
+      if (formStatus) {
 
-      formStatus.textContent =
-        "Your application is ready. Connect an email service to receive submissions.";
+        formStatus.textContent =
+          "Sending your application...";
+
+        formStatus.classList.remove(
+          "success",
+          "error"
+        );
+
+      }
 
 
-      formStatus.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-      });
+      if (submitButton) {
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+          "SENDING...";
+
+      }
+
+
+      /* =========================================
+         SEND TO FORMSPREE
+      ========================================= */
+
+      try {
+
+        const formData = new FormData(form);
+
+
+        const response = await fetch(
+          form.action,
+          {
+            method: "POST",
+            body: formData,
+            headers: {
+              "Accept": "application/json"
+            }
+          }
+        );
+
+
+        /* =========================================
+           SUCCESS
+        ========================================= */
+
+        if (response.ok) {
+
+          if (formStatus) {
+
+            formStatus.textContent =
+              "APPLICATION RECEIVED ✓ Thank you. I'll review your application and get back to you soon.";
+
+            formStatus.classList.add("success");
+
+          }
+
+
+          /* Clear the form */
+
+          form.reset();
+
+
+          /* Keep button disabled briefly */
+
+          if (submitButton) {
+
+            submitButton.textContent =
+              "APPLICATION SENT ✓";
+
+          }
+
+        }
+
+
+        /* =========================================
+           FORMSPREE ERROR
+        ========================================= */
+
+        else {
+
+          let errorMessage =
+            "Something went wrong. Please try again.";
+
+          try {
+
+            const data =
+              await response.json();
+
+            if (
+              data &&
+              data.errors &&
+              data.errors.length
+            ) {
+
+              errorMessage =
+                data.errors
+                  .map((error) => error.message)
+                  .join(" ");
+
+            }
+
+          } catch (jsonError) {
+
+            /* Keep default error message */
+
+          }
+
+
+          if (formStatus) {
+
+            formStatus.textContent =
+              errorMessage;
+
+            formStatus.classList.add("error");
+
+          }
+
+
+          if (submitButton) {
+
+            submitButton.disabled = false;
+
+            submitButton.textContent =
+              "SUBMIT APPLICATION";
+
+          }
+
+        }
+
+      }
+
+
+      /* =========================================
+         NETWORK ERROR
+      ========================================= */
+
+      catch (error) {
+
+        console.error(
+          "Form submission error:",
+          error
+        );
+
+
+        if (formStatus) {
+
+          formStatus.textContent =
+            "Unable to send your application right now. Please try again or contact me on WhatsApp.";
+
+          formStatus.classList.add("error");
+
+        }
+
+
+        if (submitButton) {
+
+          submitButton.disabled = false;
+
+          submitButton.textContent =
+            "SUBMIT APPLICATION";
+
+        }
+
+      }
+
+
+      /* =========================================
+         SCROLL TO STATUS
+      ========================================= */
+
+      if (formStatus) {
+
+        formStatus.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest"
+        });
+
+      }
 
     });
 
@@ -209,8 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     PREVENT MOBILE NAV FROM STAYING OPEN
-     AFTER RESIZING TO DESKTOP
+     RESPONSIVE NAV RESET
   ========================================= */
 
   window.addEventListener("resize", () => {
@@ -222,7 +391,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
 
       navigation.classList.remove("open");
-
       menuToggle.classList.remove("active");
 
       menuToggle.setAttribute(
