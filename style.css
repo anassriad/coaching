@@ -126,13 +126,17 @@ button {
 
 
 .site-header.scrolled {
+
   background: rgba(9, 9, 9, 0.97);
 
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.25);
 }
 
 
-/* BRAND */
+/* =========================================
+   BRAND
+========================================= */
 
 .brand {
 
@@ -174,7 +178,9 @@ button {
 }
 
 
-/* NAV */
+/* =========================================
+   NAVIGATION
+========================================= */
 
 .nav {
 
@@ -247,13 +253,16 @@ button {
 
 
 .nav-cta:hover {
+
   background: var(--accent);
 
   color: #090909 !important;
 }
 
 
-/* MOBILE MENU BUTTON */
+/* =========================================
+   MOBILE MENU
+========================================= */
 
 .menu-toggle {
 
@@ -338,8 +347,6 @@ button {
 }
 
 
-/* HERO CONTENT */
-
 .hero-content {
   max-width: 680px;
 }
@@ -361,7 +368,9 @@ button {
 
 
 .eyebrow span {
+
   color: #666;
+
   padding: 0 4px;
 }
 
@@ -413,7 +422,9 @@ h2 span {
 }
 
 
-/* HERO BUTTONS */
+/* =========================================
+   HERO BUTTONS
+========================================= */
 
 .hero-actions {
 
@@ -490,7 +501,9 @@ h2 span {
 }
 
 
-/* HERO STATS */
+/* =========================================
+   HERO STATS
+========================================= */
 
 .hero-stats {
 
@@ -552,8 +565,8 @@ h2 span {
   width: 100%;
 
   display: flex;
-  justify-content: flex-end;
 
+  justify-content: flex-end;
 }
 
 
@@ -604,8 +617,6 @@ h2 span {
   background: #151515;
 }
 
-
-/* PHOTO LABEL */
 
 .profile-info {
 
@@ -739,7 +750,6 @@ h2 span {
 
 
 .section-heading {
-
   margin-bottom: 55px;
 }
 
@@ -788,7 +798,9 @@ h2 {
 }
 
 
-/* CREDENTIALS */
+/* =========================================
+   CREDENTIALS
+========================================= */
 
 .credentials {
 
@@ -1021,7 +1033,6 @@ h2 {
 
 
 .results-empty div {
-
   padding: 30px;
 }
 
@@ -1035,6 +1046,7 @@ h2 {
   font-family: var(--display);
 
   font-size: 25px;
+
   font-weight: 800;
 
   letter-spacing: 2px;
@@ -1157,7 +1169,9 @@ h2 {
 }
 
 
-/* FORM */
+/* =========================================
+   APPLICATION FORM
+========================================= */
 
 .application-form {
 
@@ -1203,7 +1217,9 @@ h2 {
 
   font-size: 13px;
 
-  transition: border-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 
@@ -1211,7 +1227,6 @@ h2 {
 .application-form textarea::placeholder {
 
   color: #555;
-
 }
 
 
@@ -1220,6 +1235,9 @@ h2 {
 .application-form textarea:focus {
 
   border-color: var(--accent);
+
+  box-shadow:
+    0 0 0 1px rgba(215, 255, 63, 0.08);
 }
 
 
@@ -1245,15 +1263,55 @@ h2 {
 }
 
 
+/* =========================================
+   FORM STATUS
+========================================= */
+
 .form-status {
 
-  min-height: 18px;
+  min-height: 20px;
 
-  color: var(--accent);
+  margin: 0;
+
+  color: var(--muted);
 
   font-size: 10px;
 
-  line-height: 1.5;
+  line-height: 1.6;
+
+  letter-spacing: 0.3px;
+
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease;
+}
+
+
+.form-status.success {
+
+  color: var(--accent);
+}
+
+
+.form-status.error {
+
+  color: #ff7070;
+}
+
+
+.application-form button:disabled {
+
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+.application-form button:disabled:hover {
+
+  transform: none;
 }
 
 
@@ -1356,7 +1414,6 @@ footer small {
   /* MOBILE NAV */
 
   .menu-toggle {
-
     display: flex;
   }
 
@@ -1366,13 +1423,16 @@ footer small {
     position: absolute;
 
     top: var(--header-height);
+
     left: 0;
     right: 0;
 
     padding: 20px;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: stretch;
 
     gap: 4px;
@@ -1421,7 +1481,6 @@ footer small {
 
 
   .nav a:last-child {
-
     border-bottom: 0;
   }
 
@@ -1447,13 +1506,11 @@ footer small {
 
 
   .hero-content {
-
     max-width: 760px;
   }
 
 
   .profile-wrapper {
-
     justify-content: center;
   }
 
@@ -1478,7 +1535,8 @@ footer small {
 
   .cards {
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
   }
 
 }
@@ -1521,7 +1579,6 @@ footer small {
 
 
   .nav {
-
     top: var(--header-height);
   }
 
@@ -1548,7 +1605,8 @@ footer small {
 
   .hero h1 {
 
-    font-size: clamp(52px, 16vw, 70px);
+    font-size:
+      clamp(52px, 16vw, 70px);
 
     letter-spacing: -1px;
   }
@@ -1592,34 +1650,34 @@ footer small {
 
   .stat {
 
-    min-width: calc(50% - 10px);
+    min-width:
+      calc(50% - 10px);
   }
 
 
   .stat strong {
-
     font-size: 22px;
   }
 
 
   .stat span {
-
     font-size: 7px;
   }
 
 
-  /* PHOTO */
+  /* PROFILE PHOTO */
 
   .profile-photo {
 
     width: 100%;
+
+    max-width: 520px;
 
     padding: 6px;
   }
 
 
   .profile-photo::before {
-
     inset: 14px;
   }
 
@@ -1630,13 +1688,16 @@ footer small {
 
     height: auto;
 
-    max-height: none;
+    max-height: 600px;
+
+    object-fit: contain;
   }
 
 
   .profile-info {
 
     left: 17px;
+
     bottom: 17px;
 
     padding: 9px 12px;
@@ -1644,13 +1705,11 @@ footer small {
 
 
   .profile-info strong {
-
     font-size: 16px;
   }
 
 
   .profile-info span {
-
     font-size: 7px;
   }
 
@@ -1665,320 +1724,4 @@ footer small {
 
     font-size: 9px;
 
-    letter-spacing: 1.2px;
-  }
-
-
-  .ticker i {
-
-    font-size: 7px;
-  }
-
-
-  /* SECTIONS */
-
-  .section {
-
-    padding:
-      80px 20px;
-  }
-
-
-  .dark-section {
-
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-
-  .section-label {
-
-    margin-bottom: 32px;
-
-    font-size: 8px;
-  }
-
-
-  h2 {
-
-    font-size: clamp(47px, 14vw, 60px);
-
-    letter-spacing: -0.5px;
-  }
-
-
-  /* ABOUT */
-
-  .about-grid {
-
-    gap: 42px;
-  }
-
-
-  .about-content > p {
-
-    font-size: 13px;
-  }
-
-
-  .credentials {
-
-    gap: 20px;
-
-    margin-top: 30px;
-  }
-
-
-  /* CARDS */
-
-  .cards {
-
-    grid-template-columns: 1fr;
-
-    gap: 10px;
-  }
-
-
-  .card {
-
-    min-height: auto;
-
-    padding: 25px;
-
-  }
-
-
-  .card h3 {
-
-    margin-top: 30px;
-
-    font-size: 26px;
-  }
-
-
-  .card p {
-
-    font-size: 12px;
-  }
-
-
-  /* METHOD */
-
-  .method-grid {
-
-    gap: 42px;
-  }
-
-
-  .method-description {
-
-    font-size: 12px;
-  }
-
-
-  .step {
-
-    grid-template-columns: 40px 1fr;
-
-    gap: 13px;
-
-    padding: 22px 0;
-  }
-
-
-  .step > strong {
-
-    font-size: 23px;
-  }
-
-
-  .step h3 {
-
-    font-size: 23px;
-  }
-
-
-  .step p {
-
-    font-size: 11px;
-  }
-
-
-  /* RESULTS */
-
-  .results-empty {
-
-    min-height: 240px;
-  }
-
-
-  .results-empty span {
-
-    font-size: 21px;
-  }
-
-
-  .results-empty p {
-
-    max-width: 230px;
-
-    margin: 8px auto 0;
-
-    line-height: 1.6;
-  }
-
-
-  /* PHILOSOPHY */
-
-  .philosophy {
-
-    padding-top: 90px;
-
-    padding-bottom: 90px;
-  }
-
-
-  .quote-mark {
-
-    height: 55px;
-
-    font-size: 70px;
-  }
-
-
-  .philosophy blockquote {
-
-    font-size: clamp(37px, 11vw, 50px);
-  }
-
-
-  .philosophy > p {
-
-    font-size: 9px;
-  }
-
-
-  /* CONTACT */
-
-  .contact {
-
-    padding-bottom: 90px;
-  }
-
-
-  .contact-grid {
-
-    gap: 42px;
-  }
-
-
-  .contact-intro > p:last-child {
-
-    font-size: 13px;
-  }
-
-
-  .application-form {
-
-    gap: 15px;
-  }
-
-
-  .application-form input,
-  .application-form select,
-  .application-form textarea {
-
-    padding: 13px;
-
-    font-size: 13px;
-  }
-
-
-  /* FOOTER */
-
-  footer {
-
-    padding: 38px 20px;
-  }
-
-
-  .footer-brand {
-
-    font-size: 31px;
-  }
-
-}
-
-
-/* =========================================
-   VERY SMALL PHONES
-========================================= */
-
-@media (max-width: 360px) {
-
-  .hero {
-
-    padding-top: 40px;
-  }
-
-
-  .hero h1 {
-
-    font-size: 49px;
-  }
-
-
-  .hero-stats {
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-  }
-
-
-  .stat {
-
-    min-width: 0;
-  }
-
-
-  h2 {
-
-    font-size: 44px;
-  }
-
-
-  .profile-info {
-
-    left: 13px;
-    bottom: 13px;
-  }
-
-}
-
-
-/* =========================================
-   REDUCE MOTION
-========================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  html {
-    scroll-behavior: auto;
-  }
-
-
-  *,
-  *::before,
-  *::after {
-
-    animation-duration: 0.01ms !important;
-
-    animation-iteration-count: 1 !important;
-
-    transition-duration: 0.01ms !important;
-
-    scroll-behavior: auto !important;
-  }
-
-}
+    letter-spacing: 1.
